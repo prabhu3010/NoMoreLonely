@@ -1,0 +1,87 @@
+html, body{
+	background-color: #343e64;
+}
+
+.container{
+	width: 100%;
+}
+.logo{
+	font-family: 'Ubuntu', sans-serif;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	color: #fff;
+	font-size: 40px;
+}
+
+.user{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.upload-photo{
+	padding: 10px 20px;
+	background-color: #e64c65;
+	color: #fff;
+}
+
+.upload-photo:hover{
+	background-color: #DC572E;
+	text-decoration: none;
+	color: #fff;
+}
+
+.photo-btn{
+	padding: 15px 0px;
+}
+
+.content{
+	position: relative;
+	margin-top: 30px;
+}
+
+.input-fields{
+	margin-top: 10px;
+	height: 45px;
+}
+
+
+.icon-span, .enter-input{
+	border: none;
+	height: 45px;
+	background-color: #3468af;
+	color: #fff;
+}
+
+.icon-span{
+	border-right: 1px solid #ccc !important;
+}
+ .enter-input::-webkit-input-placeholder {  
+      color: #eaeaea;  
+  }
+
+footer{
+	width: 100%;
+  	position: relative;
+  	margin-top: 30px;
+  }  
+
+.click-register{
+	display: block;
+	width: 100%;
+	padding: 15px;
+	background-color: #e64c65;
+	font-family: 'Ubuntu', sans-serif;
+	border: none !important;
+	color: #eaeaea;
+	font-size: 30px;
+}
+
+.click-register:hover{
+	text-decoration: none;
+	color: #fff;
+	background-color: #DC572E;
+}
+.upload-section
+{
+	display: inline-block;
+}

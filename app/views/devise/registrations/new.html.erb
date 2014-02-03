@@ -1,0 +1,210 @@
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<%= stylesheet_link_tag "bootstrap" %>
+	<%= stylesheet_link_tag "power" %>
+	<%= stylesheet_link_tag "icomoon" %>
+	<%= stylesheet_link_tag "font-awesome" %>
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css'>
+
+	<header>
+		<div class="container">
+			<div class="logo">
+				<div class="row">
+					<div class="col-xs-12 text-center">
+						<span class="logo">
+							NO MORE LONELY
+						</span>
+					</div>
+				</div>
+			</div>
+			<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name),   :html => {:multipart => true}) do |f| %>
+			<div class="user">
+				<div class="row text-center">
+					<%= image_tag("default_profile.png" ,:class=>"img-circle")%>  
+					<div class="upload-section upload-photo">                   
+						<%= f.file_field :profile_image%>
+					</div>
+					<!-- <a href="#" class="upload-photo">
+						Upload Photo
+						<span class="glyphicon glyphicon-upload"></span>
+					</a> -->
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<div class="content">
+		<div class="container">
+			<div class="row ">
+				<div class="col-md-6 col-sm-6 col-xs-12">
+					<div class="input-group input-fields">
+						<span class="input-group-addon icon-span"><span class="glyphicon glyphicon-user"></span></span>
+						
+						<%= devise_error_messages! %>
+						<%= f.text_field :user_name, :autofocus => true ,:class=>"form-control enter-input", :placeholder=>"Username"%>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-12">
+					<div class="input-group input-fields">
+						<span class="input-group-addon icon-span"><span class="fa fa-envelope"></span></span>
+						<%= f.text_field :email , :class=>"form-control enter-input", :placeholder=>"Email"%>
+					</div>
+				</div>
+			</div>
+			<div class="row ">
+				<div class="col-md-6 col-sm-6 col-xs-12">
+					<div class="input-group input-fields">
+						<span class="input-group-addon icon-span"><span class="glyphicon glyphicon-user"></span></span>
+						<%= f.password_field :password, :autofocus => true ,:class=>"form-control enter-input", :placeholder=>"Password"%>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-12">
+					<div class="input-group input-fields">
+						<span class="input-group-addon icon-span"><span class="fa fa-envelope"></span></span>
+						<%= f.password_field :password_confirmation , :class=>"form-control enter-input", :placeholder=>"Confirm Password"%>
+					</div>
+				</div>
+			</div>
+			<div class="row ">
+				<div class="col-md-6 col-sm-6 col-xs-12">
+					<div class="input-group input-fields">
+						<span class="input-group-addon icon-span"><span class="glyphicon glyphicon-user"></span></span>
+						<%= f.text_field :location, :autofocus => true ,:class=>"form-control enter-input", :placeholder=>"Location"%>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-12">
+					<div class="input-group input-fields">
+						<span class="input-group-addon icon-span"><span class="fa fa-envelope"></span></span>
+						<%= f.text_field :contact , :class=>"form-control enter-input", :placeholder=>"Contact"%>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 text-center" >
+					<%= f.submit "Sign up" ,:class=>"click-register"%>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.min.js">
+		$(document).ready(function(){
+			$(document).on("click",".click-register",function(e){
+				if($("#new_user").valid()){
+					return true 
+				}
+				else{
+					return false
+				}				
+			});
+			$.validator.addMethod("is_email_avail", function (value, element) {
+				var is_avail = false;
+				$.ajax({
+					type: "POST",
+					url: '/is_email_avail.json', 
+					async: false,
+					data: {"email":value},
+					success: function (data) {
+						is_avail = data.status
+					}
+				});
+				if(is_avail)
+					return false
+				else
+					return true
+			}, 'This email has already been registered');
+
+			$.validator.addMethod("is_username_avail", function (value, element) {
+				var is_avail = false;
+				$.ajax({
+					type: "POST",
+					url: '/is_username_avail.json', 
+					async: false,
+					data: {"username":value},
+					success: function (data) {
+						is_avail = data.status
+					}
+				});
+				// console.log(is_avail);
+				if(is_avail)
+					return false
+				else
+					return true
+			}, 'Username has already been taken');
+
+			$("#new_user").validate({
+				errorElement: "span",
+				highlight: function (element, errorClass) {
+					$(element).removeClass('error');
+				},
+				rules: {
+					"user[password]": {
+						'required' : true,
+						'minlength': 8
+					},
+					"user[email]": {
+						'required' : true,
+						'email' : true,
+						'is_email_avail' : true
+					},
+					"user[password_confirmation]": {
+						'required': true,
+						'minlength': 8,
+						'equalTo': "#user_password"
+					},
+					"user[user_name]":{
+						'required': true,
+						'minlength': 3,
+						'is_username_avail': true
+					},
+					"user[contact]":{
+						'required': true,
+						'minlength': 10,
+						'number': true
+					},
+					"user[location]":{
+						'required': true,
+					}
+				},
+				messages: {
+					"user[password]": {
+						'required' : "Enter the Password",
+						'minlength' : "Enter atleast 8 characters"
+					},
+					"user[email]": {
+						'required' : 'Enter valid email',
+						'email' : 'Enter valid email',
+						'is_email_avail' : 'Email already taken'
+					},
+					"user[password_confirmation]": {
+						'required' : "Enter the Password",
+						'minlength' : "Enter atleast 8 characters",
+						'equalTo': "Password doesn't match"
+					},
+					"user[user_name]": {
+						'required' : "Enter username",
+						'minlength' : "Enter atleast 5 characters",
+						'is_username_avail': "Username is already taken"
+					},
+					"user[location]": {
+						'required' : "Enter First name",
+						// 'minlength' : "Enter atleast 8 characters"
+					},
+					"user[contact]": {
+						'required' : "Enter Mobile number",
+						// 'minlength' : "Enter atleast 8 characters"
+					}
+				}
+
+			});
+
+
+		});
+	</script>
+	<% end %>
+

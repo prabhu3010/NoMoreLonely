@@ -1,0 +1,32 @@
+<%= stylesheet_link_tag "bootstrap" %>
+<%= stylesheet_link_tag "recoverPassword" %>
+<%= stylesheet_link_tag "icomoon" %>
+<%= stylesheet_link_tag "font-awesome" %>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<script src="js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".main").height($(document).height() + 50);
+	$( window ).resize(function() {
+		console.log($(document).height());
+		$(".main").height($(document).height());
+	});
+	</script>
+
+
+	<div class="main">
+		<div class="logo">
+			<h2>Forgot your password?</h2>
+		</div>
+
+		<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+		<%= devise_error_messages! %>
+		<div class="email">
+			<%= f.email_field :email, :autofocus => true%>
+			<i class="fa fa-envelope-o"></i>
+		</div>
+		<div><%= f.submit "Send me reset password instructions" %></div>
+		<% end %>
+	</div>

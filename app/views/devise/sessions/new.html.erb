@@ -1,0 +1,45 @@
+<%= stylesheet_link_tag "bootstrap" %>
+<%= stylesheet_link_tag "index" %>
+<%= stylesheet_link_tag "icomoon" %>
+<%= stylesheet_link_tag "font-awesome" %>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<script src="js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".main").height($(document).height() + 50);
+	$( window ).resize(function() {
+		console.log($(document).height());
+		$(".main").height($(document).height());
+	});
+	</script>
+	<div class="main">
+		<div class="logo">
+			<a href="" class="title">NO MORE LONELY</a>
+		</div>
+		<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+		<div class="email">
+			<%= f.email_field :email, :autofocus => true ,:placeholder => "yourname@email.com"%>
+			<i class="fa fa-envelope-o"></i>
+		</div>
+		<div class="password">
+			<%= f.password_field :password , :placeholder => "Password"%>
+			<i class="icon-lock2"></i>
+		</div>
+
+		<% if devise_mapping.rememberable? -%>
+			<div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+		<% end -%>
+
+		<div><%= f.submit "SIGN IN" ,:class => "btn btn-danger"%></div>
+		<% end %>
+		<div class="forget">
+			<%= link_to "FORGET PASSWORD",new_user_password_path%>
+		</div>
+		<div class="clearfix"></div>
+		
+		<%=link_to raw("<div class='btn-holder'><button class='btn btn-success'>
+		SIGN UP</button> </div>"),"../users/sign_up"%>
+	</div>
+	<%#= render "devise/shared/links" %>
