@@ -54,6 +54,7 @@ gem 'rails_admin'
 
 gem "devise"
 gem "cancan"
-
+gem 'faye'
+gem 'thin'
 #carrierwave
 gem 'carrierwave'
