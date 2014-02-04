@@ -1,0 +1,9 @@
+<%= stylesheet_link_tag "home" %>
+
+
+<%= form_for @subroom, url: "/new_subroom", html: {class: "nifty_form"} do |f| %>
+  <%= f.text_field :name %>
+  <%= f.text_area :activity %>
+  <%= f.submit "Create" %>
+<% end %>
+

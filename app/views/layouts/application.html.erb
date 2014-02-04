@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>NoMoreLonely</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
+	<title>NoMoreLonely</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+	<%= stylesheet_link_tag "index" %>
+	<%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+	<% if user_signed_in? %>
+	<div id="wrap">
+		<%= render :partial => "layouts/header" %>
+		<%= yield %>
+	</div>
+	<%= render :partial => "layouts/footer" %>
+	<% else %>
+	<%= yield %>
+	<% end %>
 
 </body>
 </html>

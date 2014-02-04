@@ -1,0 +1,23 @@
+<header>
+	<div class="container">
+		<div class="row chat-header text-center">
+			<div class="col-xs-9 logo-box text-left">
+				<a href="#" class="logo">NO MORE LONELY</a>
+			</div>
+			<div class="col-xs-3 user-dropdown">
+				<a href="#" class="dropdown-toggle user-name" data-toggle="dropdown">
+				<span><%= current_user.user_name ? current_user.user_name : "Guest" %></span>
+					<b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="#">Profile</a></li>
+					<li><a href="#">Help</a></li>
+					<li class="divider"></li>
+					<li>
+						<%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</header>

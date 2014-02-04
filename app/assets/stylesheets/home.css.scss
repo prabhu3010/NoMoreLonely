@@ -1,0 +1,113 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.page-title{
+	font-size: 25px;
+	color: #fff;
+	text-align: center;
+	padding: 20px 0px;
+}
+.room-list{
+	padding: 20px;
+	.room{
+		padding: 10px;
+		background: #fff;
+		border-radius: 10px;
+		border: 1px solid #d7466b;
+		position: relative;
+		color: #000;
+		margin-bottom: 10px;
+		.name{
+			font-size: 16px;
+			font-weight: bold;
+			width: 80%;
+		}
+		.desc{
+			width: 80%;
+		}
+		a{
+			padding: 7px 7%;
+			display: inline-block;
+			background: #00A0B1;
+			color: #fff;
+			position: absolute;
+			right: 10px;
+			top: 50%;
+			margin-top: -14px;
+			text-decoration: none;
+			&:hover{
+				background: #02a779;
+			}
+		}
+	}
+}
+
+.subroom-home{
+	.msg{
+		padding: 15px;
+		color: #fff;
+		.welcome{
+			padding: 10px 0px;
+			font-weight: bolder;
+			font-size: 20px;
+		}
+		.option-hint{
+			padding: 5px 0px;
+			font-size: 16px;
+		}
+	}
+	.btn-danger{
+		display: inline-block;
+		margin: 0px 20px;
+		border-radius: 0px;
+		padding: 3%;
+	}
+	.btn-success{
+		display: inline-block;
+		padding: 3%;
+		// padding: 15px 25px;
+		width: 43%;
+	}
+}
+@media screen and (max-width: 480px){
+	.page-title{
+		font-size: 18px;
+	}
+	.room-list{
+		padding: 10px;
+		.room{
+			padding: 5px;
+			border-radius: 5px;
+			.name{
+				font-size: 14px;
+			}
+			.desc{
+			}
+			a{
+				padding: 4px 7%;
+				right: 5px;
+			}
+		}
+	}
+	.subroom-home{
+		.msg{
+			display: none;
+		}
+		.btn-danger{
+			display: block;
+			margin: 0px;
+			width: 100%;
+			border-radius: 0px;
+			padding: 28%;
+			font-size: 16px;
+		}
+		.btn-success{
+			display: block;
+			padding: 28%;
+			width: 100%;
+			font-size: 16px;
+		}
+	}
+}

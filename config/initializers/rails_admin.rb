@@ -2,8 +2,8 @@
 # See github.com/sferik/rails_admin for more informations
 
 RailsAdmin.config do |config|
-
-
+  config.authorize_with :cancan
+  
   ################  Global configuration  ################
 
   # Set the admin name here (optional second array element will appear in red). For example:
@@ -13,6 +13,117 @@ RailsAdmin.config do |config|
 
   # RailsAdmin may need a way to know who the current user is]
   config.current_user_method { current_user } # auto-generated
+
+  config.model Bigroom do
+    list do
+      field :name
+      field :activity
+      field :team_mates, :enum
+      field :age, :enum
+      field :location
+      field :start_time
+      field :end_time
+    end
+    show do
+      field :name
+      field :activity
+      field :team_mates, :enum
+      field :age, :enum
+      field :location
+      field :start_time
+      field :end_time
+    end
+    edit do
+      field :name
+      field :activity
+      field :team_mates, :enum
+      field :age, :enum
+      field :location
+      field :start_time
+      field :end_time
+    end
+    create do
+      field :name
+      field :activity
+      field :team_mates, :enum
+      field :age, :enum
+      field :location
+      field :start_time
+      field :end_time
+    end
+    update do
+      field :name
+      field :activity
+      field :team_mates, :enum
+      field :age, :enum
+      field :location
+      field :start_time
+      field :end_time
+    end
+  end
+
+
+
+  config.model Subroom do
+    list do
+      field :user
+      field :bigroom
+      field :name
+      field :activity
+      field :team_mates, :enum
+      field :age, :enum
+      field :location
+      field :start_time
+      field :end_time
+    end
+    show do
+      field :user
+      field :bigroom
+      field :name
+      field :activity
+      field :team_mates, :enum
+      field :age, :enum
+      field :location
+      field :start_time
+      field :end_time
+    end
+    edit do
+      field :user
+      field :bigroom
+      field :name
+      field :activity
+      field :team_mates, :enum
+      field :age, :enum
+      field :location
+      field :start_time
+      field :end_time
+    end
+    create do
+      field :user
+      field :bigroom
+      field :name
+      field :activity
+      field :team_mates, :enum
+      field :age, :enum
+      field :location
+      field :start_time
+      field :end_time
+    end
+    update do
+      field :user
+      field :bigroom
+      field :name
+      field :activity
+      field :team_mates, :enum
+      field :age, :enum
+      field :location
+      field :start_time
+      field :end_time
+    end
+  end
+
+
+
 
   # If you want to track changes on your models:
   # config.audit_with :history, 'User'

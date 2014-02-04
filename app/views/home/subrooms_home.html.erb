@@ -1,0 +1,12 @@
+<%= stylesheet_link_tag "home" %>
+
+<main class="subroom-home">
+	<div class="msg">
+		<div class="welcome">Welcome to No more lonely</div>
+		<div class="option-hint">Please choose a option to proceed further</div>
+	</div>
+	<div class="user-option">
+		<a href="/new_subroom/<%= @b_id %>" class="btn btn-danger">SET UP A ROOM</a>
+		<a href="/subrooms/<%= @b_id %>" class="btn btn-success">JOIN A ROOM</a>
+	</div>
+</main>

@@ -1,10 +1,7 @@
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<%= stylesheet_link_tag "bootstrap" %>
-	<%= stylesheet_link_tag "power" %>
-	<%= stylesheet_link_tag "icomoon" %>
-	<%= stylesheet_link_tag "font-awesome" %>
 	<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css'>
 
+	<%= stylesheet_link_tag "register" %>
+	<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name),:html => {:multipart => true}) do |f| %>
 	<header>
 		<div class="container">
 			<div class="logo">
@@ -16,19 +13,18 @@
 					</div>
 				</div>
 			</div>
-			<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name),   :html => {:multipart => true}) do |f| %>
 			<div class="user">
 				<div class="row text-center">
 					<%= image_tag("default_profile.png" ,:class=>"img-circle")%>  
-					<div class="upload-section upload-photo">                   
-						<%= f.file_field :profile_image%>
-					</div>
-					<!-- <a href="#" class="upload-photo">
+					<%= f.file_field :profile_image, :class=>"hide"%>
+					<%= f.hidden_field :profile_image_cache%>
+					<a href="#" class="upload-photo">
 						Upload Photo
-						<span class="glyphicon glyphicon-upload"></span>
-					</a> -->
+						<span class="icon-upload"></span>
+					</a>
 				</div>
 			</div>
+			<%= devise_error_messages! %>
 		</div>
 	</header>
 
@@ -38,8 +34,6 @@
 				<div class="col-md-6 col-sm-6 col-xs-12">
 					<div class="input-group input-fields">
 						<span class="input-group-addon icon-span"><span class="glyphicon glyphicon-user"></span></span>
-						
-						<%= devise_error_messages! %>
 						<%= f.text_field :user_name, :autofocus => true ,:class=>"form-control enter-input", :placeholder=>"Username"%>
 					</div>
 				</div>
@@ -84,23 +78,29 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 text-center" >
-					<%= f.submit "Sign up" ,:class=>"click-register"%>
+					<%= f.submit "Sign up" ,:class=>"register-btn"%>
 				</div>
 			</div>
 		</div>
 	</footer>
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="https://code.jquery.com/jquery.js"></script>
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="js/bootstrap.min.js">
+	<% end %>
+
+	<script type="text/javascript">
 		$(document).ready(function(){
-			$(document).on("click",".click-register",function(e){
+			$(document).on("click",".upload-photo",function(e){
+				e.preventDefault();
+				$("#user_profile_image").trigger("click");
+			});		
+			$(document).on("change","#user_profile_image",function(e){
+			});		
+			$(document).on("click",".register-btn",function(e){
 				if($("#new_user").valid()){
 					return true 
 				}
 				else{
 					return false
 				}				
+				return false
 			});
 			$.validator.addMethod("is_email_avail", function (value, element) {
 				var is_avail = false;
@@ -130,7 +130,6 @@
 						is_avail = data.status
 					}
 				});
-				// console.log(is_avail);
 				if(is_avail)
 					return false
 				else
@@ -192,19 +191,13 @@
 						'is_username_avail': "Username is already taken"
 					},
 					"user[location]": {
-						'required' : "Enter First name",
-						// 'minlength' : "Enter atleast 8 characters"
+						'required' : "Enter First name"
 					},
 					"user[contact]": {
-						'required' : "Enter Mobile number",
-						// 'minlength' : "Enter atleast 8 characters"
+						'required' : "Enter Valid Mobile number"
 					}
 				}
-
 			});
-
-
-		});
-	</script>
-	<% end %>
+});
+</script>
 

@@ -1,0 +1,13 @@
+<%= stylesheet_link_tag "home" %>
+
+<div class="page-title">Join a room<br>Help yourself to look for a room</div>
+
+<div class="room-list">
+	<% @bigrooms.each do |br| %>
+	<div class="room">
+		<div class="name"><%= br.name %></div>
+		<div class="desc"><%= br.activity %></div>
+		<a href="/subrooms_home/<%=br.id%>">Join</a>
+	</div>
+	<% end %>
+</div>
