@@ -12,5 +12,6 @@ class HomeController < ApplicationController
   end
   def subrooms
   	@b_id = params[:b_id]
+  	@subrooms = Subroom.where(:bigroom_id => @b_id)
   end
 end
