@@ -13,6 +13,8 @@
 *= require plugins/icomoon
 *= require plugins/font-awesome
 *= require fonts
+*= require jquery.ui.datepicker
+*= require plugins/jquery-ui-timepicker-addon
 
 */
 
@@ -36,7 +38,6 @@ html, body{
 	margin: 0;
 	padding: 0;
 	height: 100%;
-	/*overflow-x: hidden;*/
 	min-width: 320px;
 }
 header{

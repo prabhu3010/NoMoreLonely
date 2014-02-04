@@ -1,9 +1,48 @@
 <%= stylesheet_link_tag "home" %>
 
+<div class="page-title">Enter your own requirement:</div>
 
-<%= form_for @subroom, url: "/new_subroom", html: {class: "nifty_form"} do |f| %>
-  <%= f.text_field :name %>
-  <%= f.text_area :activity %>
-  <%= f.submit "Create" %>
+<%= form_for @subroom, url: "/create_subroom", html: {class: "subroom-form"} do |f| %>
+<div class="all-fields">
+		<%= f.hidden_field :bigroom_id, :value=> @b_id %>
+		<%= f.hidden_field :user_id, :value=>current_user.id %>
+	<div class="field">
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+	</div>
+	<div class="field">
+		<%= f.label :activity %>
+		<%= f.text_area :activity %>
+	</div>
+	<div class="field">
+		<%= f.label :team_mates %>
+		<%= f.select :team_mates, options_for_select([["Male & Female","1"],["Male","2"],["Female","3"]]) %>
+	</div>
+	<div class="field">
+		<%= f.label :age %>
+		<%= f.select :age, options_for_select([["Bellow 18","1"],["18 - 25","2"],["26 - 35","3"],["Above 35","4"]]) %>
+	</div>
+	<div class="field">
+		<%= f.label :location %>
+		<%= f.text_field :location %>
+	</div>
+	<div class="field">
+		<%= f.label :start_time %>
+		<%= f.text_field :start_time %>
+	</div>
+	<div class="field">
+		<%= f.label :end_time %>
+		<%= f.text_field :end_time %>
+	</div>
+</div>
+	<div class="submit-holder">
+		<%= f.submit "Setup a Room",:class => "btn btn-success",:id => "submit_btn" %>
+	</div>
 <% end %>
 
+<script type="text/javascript">
+	$(function() {
+		$('#subroom_start_time').datetimepicker();
+		$('#subroom_end_time').datetimepicker();
+	});
+</script>

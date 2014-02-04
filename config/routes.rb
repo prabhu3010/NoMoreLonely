@@ -13,6 +13,7 @@ NoMoreLonely::Application.routes.draw do
   match "/subrooms_home/:b_id", :to => "home#subrooms_home", :as => "subroom_home", via: [:get, :post]
   match "/subrooms/:b_id", :to => "home#subrooms", :as => "subroom", via: [:get, :post]
   match "/new_subroom/:b_id", :to => "home#new_subroom", :as => "new_subroom", via: [:get, :post]
+  match "/create_subroom", :to => "home#create_subroom", :as => "create_subroom", via: [:get, :post]
   # You can have the root of your site routed with "root"
   root 'home#index'
 
